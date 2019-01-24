@@ -132,7 +132,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///----------------------------
 
 /**
- The data, upload, and download tasks currently run by the managed session.
+ The data, upload, and download tasks currently run by the managed session.（这个包含以下三个）
  */
 @property (readonly, nonatomic, strong) NSArray <NSURLSessionTask *> *tasks;
 
@@ -201,7 +201,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Invalidates the managed session, optionally canceling pending tasks and optionally resets given session.
  
- @param cancelPendingTasks  Whether or not to cancel pending tasks.
+ @param cancelPendingTasks  Whether or not to cancel pending tasks（待处理的任务）.
  @param resetSession        Whether or not to reset the session of the manager.
  */
 - (void)invalidateSessionCancelingTasks:(BOOL)cancelPendingTasks resetSession:(BOOL)resetSession;
@@ -214,7 +214,10 @@ NS_ASSUME_NONNULL_BEGIN
  Creates an `NSURLSessionDataTask` with the specified request.
 
  @param request The HTTP request for the request.
- @param completionHandler A block object to be executed when the task finishes. This block has no return value and takes three arguments: the server response, the response object created by that serializer, and the error that occurred, if any.
+ @param completionHandler A block object to be executed when the task finishes. This block has no return value and takes three arguments:
+    - the server response,
+    - the response object created by that serializer,
+    - and the error that occurred, if any.
  */
 - (NSURLSessionDataTask *)dataTaskWithRequest:(NSURLRequest *)request
                             completionHandler:(nullable void (^)(NSURLResponse *response, id _Nullable responseObject,  NSError * _Nullable error))completionHandler DEPRECATED_ATTRIBUTE;
@@ -223,9 +226,18 @@ NS_ASSUME_NONNULL_BEGIN
  Creates an `NSURLSessionDataTask` with the specified request.
 
  @param request The HTTP request for the request.
- @param uploadProgressBlock A block object to be executed when the upload progress is updated. Note this block is called on the session queue, not the main queue.
- @param downloadProgressBlock A block object to be executed when the download progress is updated. Note this block is called on the session queue, not the main queue.
- @param completionHandler A block object to be executed when the task finishes. This block has no return value and takes three arguments: the server response, the response object created by that serializer, and the error that occurred, if any.
+ @param uploadProgressBlock A block object to be executed when the upload progress is updated.
+        Note this block is called on the session queue, not the main queue.
+ 
+ @param downloadProgressBlock A block object to be executed when the download progress is updated.
+        Note this block is called on the session queue, not the main queue.
+ 
+ @param completionHandler A block object to be executed when the task finishes.
+        This block has no return value and takes three arguments:
+            - the server response,
+            - the response object created by that serializer,
+            - and the error that occurred, if any.
+ 
  */
 - (NSURLSessionDataTask *)dataTaskWithRequest:(NSURLRequest *)request
                                uploadProgress:(nullable void (^)(NSProgress *uploadProgress))uploadProgressBlock
@@ -237,12 +249,18 @@ NS_ASSUME_NONNULL_BEGIN
 ///---------------------------
 
 /**
- Creates an `NSURLSessionUploadTask` with the specified request for a local file.
+ Creates an `NSURLSessionUploadTask` with the specified request for a local file.（上传本地文件）
 
  @param request The HTTP request for the request.
  @param fileURL A URL to the local file to be uploaded.
- @param uploadProgressBlock A block object to be executed when the upload progress is updated. Note this block is called on the session queue, not the main queue.
- @param completionHandler A block object to be executed when the task finishes. This block has no return value and takes three arguments: the server response, the response object created by that serializer, and the error that occurred, if any.
+ @param uploadProgressBlock A block object to be executed when the upload progress is updated.
+        Note this block is called on the session queue, not the main queue.
+ 
+ @param completionHandler A block object to be executed when the task finishes.
+        This block has no return value and takes three arguments:
+            - the server response,
+            - the response object created by that serializer,
+            - and the error that occurred, if any.
 
  @see `attemptsToRecreateUploadTasksForBackgroundSessions`
  */
